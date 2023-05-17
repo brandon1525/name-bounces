@@ -11,6 +11,12 @@ $("#addStudent").on("click", () => {
   const studentName = $("#studentName").val();
   circles.add(studentName);
 });
+$(document).on("click", ".studentItem", function () {
+  const dataId = $(this).attr("data-id");
+  console.log(dataId);
+  circles.items = circles.items.filter((circle) => circle.index !== +dataId);
+  $(this).remove();
+});
 
 function drawCircle(c) {
   ctx.beginPath();
@@ -26,6 +32,7 @@ function drawCircle(c) {
 
 const circles = {
   items: [], // array of circles
+  index: 0,
   add(studentName) {
     var circle;
     var circleColor = getRandomColor();
@@ -36,6 +43,7 @@ const circles = {
         y: 100,
         ballRadius,
         studentName,
+        index: this.index,
         textColor: invertColor(circleColor),
         color: circleColor,
         velocidad,
@@ -44,15 +52,15 @@ const circles = {
       })
     );
     $("#studentsList").append(
-      `<div class="studentItem">
+      `<div class="studentItem" data-id="${this.index}">
         <span>${studentName}</span>
         <span class="item-color" style="background-color: ${circleColor};"></span>
     </div>`
     );
+    this.index++;
     return circle;
   },
   update() {
-    console.log(this);
     var c;
     for (let i = 0; i < circles.items.length; i++) {
       c = circles.items[i]; // get the circle
