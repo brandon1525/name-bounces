@@ -1,0 +1,39 @@
+body {
+  height: 100vh;
+  width: 100vw;
+}
+#container {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+#studentsContainer {
+  width: 20%;
+  max-height: calc(100% - 50px);
+}
+#studentInput {
+  height: 10%;
+}
+#studentsList {
+  height: 85%;
+  overflow-y: auto;
+  max-height: 100%;
+}
+#myCanvas {
+  height: calc(100% - 50px);
+  width: calc(80% - 20px);
+  background: #eee;
+  border: 1px solid black;
+}
+.studentItem {
+  padding: 5px;
+  border: 1px solid black;
+  margin: 1px;
+  display: flex;
+  justify-content: space-between;
+}
+.item-color {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+}
